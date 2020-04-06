@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  background-color: #e4e9Fd;
+  min-height: 800px;
+  background-image: -webkit-linear-gradient(70deg, #A695E9 50%, #E4E9FD 50%);
+}
+
+a {
+  color: #00B7FF;
+}
+.jumbotron{
+  max-width: 60%;
+  margin: auto;
+}
+
+.form-custom {
+  margin-top: 10px;
+ 
+}
+
+.mycheck {
+  text-align: left;
+  margin: 0 5px;
+}
+
+input:checked + p {  
+  text-decoration: line-through; 
+  text-decoration-color: #A695E9; 
+}
+
+
+
+.check {
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+p {
+  margin-left: 30px;
+  margin-bottom: 0;
+}
+

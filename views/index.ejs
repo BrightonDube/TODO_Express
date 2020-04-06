@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Todo App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <div class="jumbotron">
+      <h1 class="display-4"><%= title %></h1>
+      
+      <hr class="my-4"> 
+      <ul class="list-group">
+        
+        <!-- Loop through the array that was passed through by the js server -->
+        <% for(let item in items){ %>
+          
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="check">
+            <input class="form-check-input mycheck" type="checkbox" id="inlineCheckbox1" value="option1">
+            <p><%=items[item]%></p>
+
+          </div>
+          
+        
+        </li>
+        <% } %>
+      </ul>
+      <form action="/" method="post">
+        <input type="text" name="item" class="form-control form-custom" placeholder="Add to do item">
+        <input type="submit" value="Add item" class=" form-custom btn btn-block btn-primary btn-lg" id="submit">
+      </form>    
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
