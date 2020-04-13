@@ -17,12 +17,12 @@ app.use(express.static(__dirname+'/public'));
 const items = [];
 
 app.get('/', (req, res) => {
-  let day = date.day;
+  const day = date.date;
   res.render('index', {title: day, day: day, items: items});
 });
 
 app.post("/",(req, res)=>{
-  let item = req.body.item;
+  const item = req.body.item;
   items.push(item);
   res.redirect('/');
 });
