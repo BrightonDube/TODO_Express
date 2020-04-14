@@ -20,22 +20,14 @@ a {
  
 }
 
-.mycheck {
-  text-align: left;
-  margin: 0 5px;
-}
-
 input:checked + p {  
   text-decoration: line-through; 
   text-decoration-color: #A695E9; 
 }
 
-
-
 .check {
-  width: 100%;
-  text-align: left;
-  margin: 0;
+  margin-left: 10px;
+  margin-top: auto;
 }
 p {
   margin-left: 30px;
@@ -45,3 +37,4 @@ footer {
   margin-top: 100px;
   font-size: 1.2rem;
 }
+

@@ -5,22 +5,21 @@
       
       <hr class="my-4"> 
       <ul class="list-group">
-        
         <!-- Loop through the array that was passed through by the js server -->
-        <% for(let item in items){ %>
-          
+        <% for(let item in items){ %>          
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="check">
-            <input class="form-check-input mycheck" type="checkbox" id="inlineCheckbox1" value="option1">
-            <p><%=items[item]%></p>
+          
+          <input class="form-check-input mr-auto check" type="checkbox" > 
+          <p class=""><%=items[item].content%></p>
+          <form action="/<%=items[item]._id%>" method="post">
+            <button class=" btn btn-danger ml-auto" submit><i class="fa fa-trash"></i></button>
+          </form>
 
-          </div>         
-        
         </li>
         <% } %>
       </ul>
       <form action="/" method="post">
-        <input type="text" name="item" class="form-control form-custom" placeholder="Add to do item">
+        <input type="text" name="item" class="form-control form-custom" placeholder="Add to do item" required>
         <input type="submit" value="Add item" class=" form-custom btn btn-block btn-primary btn-lg" id="submit">
       </form>    
     </div>
