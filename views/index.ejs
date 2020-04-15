@@ -1,8 +1,7 @@
 <%- include('header'); -%>
     
     <div class="jumbotron">
-      <h1 class="display-4"><%= title %></h1>
-      
+      <h1 class="display-4"><%= title %></h1>      
       <hr class="my-4"> 
       <ul class="list-group">
         <!-- Loop through the array that was passed through by the js server -->
@@ -12,7 +11,7 @@
           <input class="form-check-input mr-auto check" type="checkbox" > 
           <p class=""><%=items[item].content%></p>
           <form action="/<%=items[item]._id%>" method="post">
-            <button class=" btn btn-danger ml-auto" submit><i class="fa fa-trash"></i></button>
+            <button class=" btn btn-danger ml-auto" name="delete" value="<%=title%>" submit><i class="fa fa-trash"></i></button>
           </form>
 
         </li>
@@ -20,7 +19,7 @@
       </ul>
       <form action="/" method="post">
         <input type="text" name="item" class="form-control form-custom" placeholder="Add to do item" required>
-        <input type="submit" value="Add item" class=" form-custom btn btn-block btn-primary btn-lg" id="submit">
+        <button type="submit" name="list" value="<%=title%>" class=" form-custom btn btn-block btn-primary btn-lg" id="submit">Add Item </button>
       </form>    
     </div>
   <%- include('footer'); -%>   
