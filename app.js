@@ -38,7 +38,7 @@ app.get('/', async (req, res) => {
 app.get("/:customList", async (req, res) => {
   let customUrl = _.lowerCase(req.params.customList);
 
-  if (customUrl === "favicon.ico") res.redirect("/");//when offline it creates /favicon.ico on home (bug)
+  if (customUrl === _.lowerCase("favicon.ico")) res.redirect("/");//when offline it creates /favicon.ico on home (bug)
   else {
     // Find the list from the database that has a name which matches what the user typed in the url
     const listFromDb = await List.findOne({ name: customUrl });
@@ -59,7 +59,9 @@ app.get("/:customList", async (req, res) => {
 });
 
 app.post("/", async (req, res) => {
+  //Grab the list item from the form
   const item = req.body.item;
+  //grab the the title from the form and convert it to lowercase
   const listTitle = _.lowerCase(req.body.list); 
  
   // use the model created in the Tasks.model
@@ -74,6 +76,7 @@ app.post("/", async (req, res) => {
   res.redirect('/');
 }
 else{
+  // if the list item comes from a custom list page, find the list and add the list item
  await List.findOne({name:listTitle}, (err, result)=>{  
       if (err) {
         console.log("There was an error\n"+err);
@@ -88,11 +91,15 @@ else{
 }
 });
 
+//This route is for deleting items (we are using the id supplied in the url)
 app.post('/:id', async (req, res) => {
-  let _id = req.params.id;
-  let listTitle = _.lowerCase(req.body.delete);  
+  //use this only on the custom deletes
+  let id = Number(req.params.id); //grab id and convert it to Number to avoid database bugs
+  let _id = req.params.id; //This is not a number type ID so it should be used on the default lists only
+  let listTitle = _.lowerCase(req.body.delete); //again convert title to lowercase for consistency 
   
   if(listTitle === _.lowerCase(day)){
+    //If on the default list, just find the item and delete it
     await Task.findByIdAndDelete(_id, function (err) {
       if (err) console.log(err);
       else{
@@ -103,11 +110,14 @@ app.post('/:id', async (req, res) => {
     
   }
   else{
-    await List.findOneAndUpdate({name: listTitle}, {$pull: {listItems: {_id: _id}}}, (err)=>{
+    //if it's from any other list, find the list and update the list items value using pull
+    await List.findOneAndUpdate({name:`${listTitle}`}, 
+    //$pull is used to remove elements of embedded documents
+    {$pull: {listItems: {_id: id}}}, //remove from listItems, the element with the given id     
+       (err, result)=>{
           if (err) {
             console.log("An error occured\n"+err);
-          } else {
-            console.log("Item Deleted successfully!");
+          } else {            
             res.redirect("/" +  listTitle);
           }
         });      

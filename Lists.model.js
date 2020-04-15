@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 //Use mongoose to connect to the Database that you need to work with
 mongoose.connect('mongodb://localhost/todo', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 //This gives confirmation of whether we are connected or not
